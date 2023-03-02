@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="header">
+        <h1>Productos</h1>
+        <div class="tools">
+            <button mat-raised-button matTooltip="Crear nuevo producto" color="primary" type="button" (click)="addProducto()">
+                <span>Nuevo</span>
+            </button>
+        </div>
+    </div>
+    <div class="body">
+        <div class="form mb-3">
+            <div class="row align-items-center collapse form-group-actions">
+                Filtros
+            </div>
+
+            <div class="mat-table-wrapper">
+                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                    <ng-container matColumnDef="Nombre">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+                        <td mat-cell *matCellDef="let element">{{element.Nombre}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="Descripcion">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</th>
+                        <td mat-cell *matCellDef="let element">{{element.Descripcion}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="Stock">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock</th>
+                        <td mat-cell *matCellDef="let element">
+                          {{element.Stock}}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="StockMinimo">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock mínimo</th>
+                      <td mat-cell *matCellDef="let element">
+                        {{element.StockMinimo}}
+                      </td>
+                  </ng-container>
+                    <ng-container matColumnDef="PrecioBase">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio</th>
+                      <td mat-cell *matCellDef="let element">{{element.PrecioBase}}</td>
+                  </ng-container>
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-icon-button matTooltip="Editar información" (click)="editProducto(element)" color="warn" type="button">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Hacer pedido a proveedor" (click)="ComprarProducto(element)" color="accent" type="button" [disabled]="element.Stock > element.StockMinimo">
+                                <mat-icon>supervisor_account</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Vender a cliente" (click)="VenderProducto(element)" color="primary" type="button">
+                              <mat-icon>add_shopping_cart</mat-icon>
+                          </button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <!-- <div class="mat-table-message" *ngIf="!dataSource.hasItems">No records found</div>
+                <div class="mat-table-message" *ngIf="dataSource.isPreloadTextViewed$ | async">Please wait....</div> -->
+                <!-- bottom -->
+                <div class="mat-table-bottom">
+                  <!-- MATERIAL SPINNER | Url: 'https://material.angular.io/components/progress-spinner/overview' -->
+                  <!-- <mat-spinner [diameter]="20" *ngIf="dataSource.loading$ | async"></mat-spinner> -->
+                  <!-- MATERIAL PAGINATOR | Binded to dasources -->
+                  <!-- See off.documentations 'https://material.angular.io/components/paginator/overview' -->
+                  <!-- <mat-paginator [pageSize]="10" [pageSizeOptions]="[3, 5, 10]" [length]="dataSource.paginatorTotal$ | async"
+                                [showFirstLastButtons]="true"></mat-paginator> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

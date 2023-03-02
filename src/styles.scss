@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-dialog-container {
+  padding: 0 !important;
+}
+
+
+// Global vendors
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~material-design-icons/iconfont/material-icons.css";
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+.form .form-group {
+  margin-bottom: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.mat-mdc-form-field {
+  min-width: 300px;
+}
+
+.mat-mdc-form-field-infix{
+  width: 100%;
+}

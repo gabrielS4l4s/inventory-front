@@ -1,0 +1,82 @@
+<div class="card card-custom">
+  <div class="card-header">
+    <div class="card-title">
+      <h3 class="card-label">Comprar {{producto.Nombre}}</h3>
+    </div>
+    <div class="card-toolbar">
+      <!-- <button mat-raised-button matTooltip="Crear nuevo producto" color="primary" type="button">
+        <span>Nuevo</span>
+      </button> -->
+    </div>
+  </div>
+  <form class="form" [formGroup]="buyForm" (submit)="onSubmit()">
+    <div class="card-body">
+      <!-- <div class="card-body-progress">
+        <mat-spinner [diameter]="20"></mat-spinner>
+      </div> -->
+      <div class="alert" *ngIf="hasFormErrors">
+        Hay campos por llenar
+      </div>
+      <div class="form-group row">
+        <div class="col-lg-6 kt-margin-bottom-20-mobile">
+          <mat-form-field class="mat-form-field-fluid">
+            <mat-select placeholder="Seleccione Proveedor" formControlName="IdProveedor">
+              <mat-option *ngFor="let cl of listProviders$ | async" value={{cl.Id}}>{{cl.RazonSocial}}</mat-option>
+            </mat-select>
+            <mat-hint align="start">
+              <strong>Seleccione Proveedor</strong>
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6 kt-margin-bottom-20-mobile">
+          <mat-form-field class="mat-form-field-fluid">
+            <input matInput placeholder="Cantidad" formControlName="Cantidad" />
+            <mat-error>
+              La cantidad es
+              <strong>requerida</strong>
+            </mat-error>
+            <mat-hint align="start">
+              Por favor ingrese la
+              <strong>Cantidad </strong>
+            </mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="separator separator-dashed my-6"></div>
+      <div class="form-group row">
+        <div class="col-lg-6 kt-margin-bottom-20-mobile">
+          <mat-form-field class="mat-form-field-fluid">
+            <input matInput placeholder="Total a pagar" formControlName="TotalPago" />
+            <mat-error>
+              El pago es
+              <strong>requerido</strong>
+            </mat-error>
+            <mat-hint align="start">
+              Por favor ingrese el
+              <strong>Pago </strong> del producto
+            </mat-hint>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex justify-content-between">
+        <div class="mr-2"></div>
+        <div class="">
+          <button mat-raised-button matTooltip="Guardar" color="primary" type="submit">
+            <span>Guardar</span>
+          </button>
+          <button mat-raised-button matTooltip="Cancelar" [mat-dialog-close]="data.animal"  color="warn" type="button">
+            <span>Cancelar</span>
+          </button>
+        </div>
+        <!-- <div class="col-lg-6 kt-align-right">
+          <button mat-raised-button matTooltip="Eliminar" color="warn" type="button">
+            <span>Eliminar</span>
+          </button>
+        </div> -->
+      </div>
+    </div>
+  </form>
+</div>

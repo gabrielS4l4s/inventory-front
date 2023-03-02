@@ -1,0 +1,119 @@
+<div class="card card-custom">
+  <div class="card-header">
+    <div class="card-title">
+      <h3 class="card-label">Productos</h3>
+    </div>
+    <div class="card-toolbar">
+      <button mat-raised-button matTooltip="Crear nuevo producto" color="primary" type="button">
+        <span>Nuevo</span>
+      </button>
+    </div>
+  </div>
+  <form class="form" [formGroup]="productoForm" (submit)="onSubmit()">
+    <div class="card-body">
+      <div class="card-body-progress">
+        <mat-spinner [diameter]="20"></mat-spinner>
+      </div>
+      <div class="alert" *ngIf="hasFormErrors">
+        Hay campos por llenar
+      </div>
+      <div class="form-group row">
+        <div class="col-lg-6 kt-margin-bottom-20-mobile">
+          <mat-form-field class="mat-form-field-fluid">
+            <input matInput placeholder="Nombre Producto" formControlName="Nombre" />
+            <mat-error>
+              El nombre del producto es
+              <strong>requerido</strong>
+            </mat-error>
+            <mat-hint align="start">
+              Por favor ingrese el
+              <strong>Nombre</strong> del producto
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6 kt-margin-bottom-20-mobile">
+          <mat-form-field class="mat-form-field-fluid">
+            <input matInput placeholder="Precio venta" formControlName="PrecioBase" />
+            <mat-error>
+              El precio venta es
+              <strong>requerido</strong>
+            </mat-error>
+            <mat-hint align="start">
+              Por favor ingrese el
+              <strong>Precio </strong> del producto
+            </mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="separator separator-dashed my-6"></div>
+      <div class="form-group row">
+        <div class="col-lg-6 kt-margin-bottom-20-mobile">
+          <mat-form-field class="mat-form-field-fluid">
+            <input matInput placeholder="Stock" formControlName="Stock" />
+            <mat-error>
+              El stock es
+              <strong>requerido</strong>
+            </mat-error>
+            <mat-hint align="start">
+              Por favor ingrese el
+              <strong>stock </strong> del producto
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6 kt-margin-bottom-20-mobile">
+          <mat-form-field class="mat-form-field-fluid">
+            <input matInput placeholder="Stock Minimo" formControlName="StockMinimo" />
+            <mat-error>
+              Stock minimo es
+              <strong>requerido</strong>
+            </mat-error>
+            <mat-hint align="start">
+              Por favor ingrese la
+              <strong>Stock minimo</strong> del producto
+            </mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="separator separator-dashed my-6"></div>
+      <div class="form-group row">
+        <div class="col-lg-6 kt-margin-bottom-20-mobile">
+          <mat-form-field class="mat-form-field-fluid">
+            <input matInput placeholder="Descripción" formControlName="Descripcion" />
+            <mat-hint align="start">
+              Por favor ingrese la
+              <strong>descripción</strong> del producto
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6 kt-margin-bottom-20-mobile">
+          <mat-form-field class="mat-form-field-fluid">
+            <mat-select placeholder="Seleccione Categoria" formControlName="IdCategoria">
+              <mat-option *ngFor="let cl of categoriesList$ | async" value={{cl.Id}}>{{cl.Descripcion}}</mat-option>
+            </mat-select>
+            <mat-hint align="start">
+              <strong>Seleccione Categoria</strong>
+            </mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex justify-content-between">
+        <div class="mr-2"></div>
+        <div class="">
+          <button mat-raised-button matTooltip="Guardar" color="primary" type="submit">
+            <span>Guardar</span>
+          </button>
+          <button mat-raised-button matTooltip="Cancelar" [mat-dialog-close]="data.animal"  color="warn" type="button">
+            <span>Cancelar</span>
+          </button>
+        </div>
+        <!-- <div class="col-lg-6 kt-align-right">
+          <button mat-raised-button matTooltip="Eliminar" color="warn" type="button">
+            <span>Eliminar</span>
+          </button>
+        </div> -->
+      </div>
+    </div>
+  </form>
+</div>
